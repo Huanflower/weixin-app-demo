@@ -1,0 +1,40 @@
+<view class="main">
+    <view class="categroy-left">
+        <view wx:for="{{category}}" wx:key="index" data-id="{{item.id}}" data-index="{{index}}"
+            bindtap="switchTab"
+            class="cate-list {{curIndex === index?'on':''}}" style="color:{{color}}">{{item.title}}</view>
+    </view>
+
+    <scroll-view class="categroy-right" scroll-y="{{isScroll}}" scroll-into-view="{{toView}}" scroll-with-animation="true">
+        <block wx:for="{{detail}}" wx:for-index wx:key="idx">
+            <view id="{{item.id}}" class="cate-box">
+                <view class="cate-banner" wx:if="{{item.banner}}}">
+                    <image src="{{server + item.banner}}" wx:if="{{item.banner}}"></image>
+                </view>
+                <view class="cate-title">
+                    <text style="color:{{color}}">{{item.title}}</text>
+                </view>
+                <view class="product" wx:if="{{item.cate_type != 3}}">
+                    <view class="product-list" wx:for="{{item.detail}}" wx:key="index" wx:for-item="val">
+                        <navigator url="../details/details?id={{val.id}}">
+                            <image src="{{server + val.fm_img}}" class='pt_img'></image>
+                            <view class="goods_title">{{val.title}}</view>
+                            <view class="classname"><text>￥{{val.tuan_price?val.tuan_price:val.now_price}}</text></view>
+                        </navigator>
+                    </view>
+                </view>
+                <view class="product" wx:if="{{item.cate_type == 3}}">
+                    <view class="product-list tx_goods" wx:for="{{item.detail}}" wx:key="index" wx:for-item="val">
+                        <navigator url="../details/details?id={{val.id}}">
+                            <image src="{{server + val.fm_img}}" class='tx_img'></image>
+                            <view class="goods_title tx_title">{{val.title}}</view>
+                        </navigator>
+                    </view>
+                </view>
+            </view>
+        </block>
+    </scroll-view>
+
+</view>
+<import src="../../common/tabbar.wxml" />
+<template is="tabbar" data="{{tabbarList:tabbarList, tabbarHidden:tabbarHidden}}"></template>

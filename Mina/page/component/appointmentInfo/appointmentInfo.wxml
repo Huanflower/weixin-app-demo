@@ -1,0 +1,51 @@
+<!--pages/userInfo/userInfo.wxml-->
+<form class="page__bd" catchsubmit="formSubmit" catchreset="formReset">
+  <view class="user_info">
+    <view class="info_list">
+      <view class="info_name">
+        <text>姓名：</text>
+      </view>
+      <view class="info_input">
+        <input placeholder="请输入您的姓名" name="userName" value="{{realName}}"/>
+      </view>
+    </view>
+    <view class="info_list">
+      <view class="info_name">
+        <text>电话：</text>
+      </view>
+      <view class="info_input">
+        <input placeholder="请输入您的手机号码" name="tel" value="{{tel}}"/>
+      </view>
+    </view>
+    <view class="info_list">
+      <view class="info_name">
+        <text>微信：</text>
+      </view>
+      <view class="info_input">
+        <input placeholder="请输入您的微信号" name="wxNum" value="{{wxNum}}"/>
+      </view>
+    </view>
+    <view class="info_list" wx:if="{{goodsId == 0}}">
+      <view class="info_name">
+        <text>类型：</text>
+      </view>
+      <view class="info_input">
+        <picker mode="selector" range="{{appType}}" value="{{index}}" bindchange="listenerPickerSelected">
+          <text>{{appType[currentIndex]}}</text>
+      </picker>
+      </view>
+    </view>
+    <view class="info_list app_content">
+      <view class="info_name">
+        <text>备注：</text>
+      </view>
+      <view class="info_input">
+        <textarea placeholder="" name="content" class='content' />
+      </view>
+    </view>
+  </view>
+  <view class="submit_button">
+    <button form-type="submit">确认修改</button>
+  </view>
+</form>
+<view class="myToast" hidden="{{toastHidden}}">{{noticeContent}}</view>

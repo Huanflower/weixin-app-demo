@@ -1,0 +1,20 @@
+<!--page/component/cash/cash.wxml-->
+<view class="account" style='background-color:{{color}}'>
+  <view class="big">{{account}} </view>
+  <view>账户余额(元)</view>
+
+</view>
+<image src="/image/process.jpg" mode="widthFix" style="width: 100%;"></image>
+<form catchsubmit="formSubmit" catchreset="formReset">
+<view class="tx_form">
+  <view>
+    <input class="tx_input" type="text" name="fee" placeholder="最多可以提现的金额 {{account}}"/>
+  </view>
+  <view>
+    <input class="tx_input" type="number" name="tel" placeholder="填写您的电话号码"/>
+  </view>
+  <view>
+    <button type='primary' form-type="submit">申请提现</button>
+  </view>
+</view>
+</form>

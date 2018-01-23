@@ -1,0 +1,15 @@
+<view class="main">
+    <view class="banner" wx:if="{{topImg.url}}">
+        <image src="{{server + topImg.url}}"></image>
+    </view>
+
+    <view class="list-box">
+        <view class="newest-list {{cateInfo.cate_type == 3? 'tx_list' : ''}}" wx:for="{{goodsList}}">
+            <navigator url="../details/details?id={{item.id}}">
+                <image src="{{server + item.fm_img}}" class="pt_img {{cateInfo.cate_type == 3? 'tx_img' : ''}}"></image>
+                <view class="newest-text {{cateInfo.cate_type == 3? 'tx_text' : ''}}"><text>{{item.title}}</text></view>
+                <view class="newest-text" wx:if="{{cateInfo.cate_type != 3}}"><text>￥ {{item.now_price}}</text></view>
+            </navigator>
+        </view>
+    </view>
+</view>

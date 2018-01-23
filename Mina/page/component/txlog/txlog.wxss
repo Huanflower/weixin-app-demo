@@ -1,0 +1,18 @@
+/* page/component/txlog/txlog.wxss */
+@import '../../common/common.wxss';
+.tx_list{ 
+  height: 100rpx;
+  font-size: 30rpx;
+  line-height: 100rpx;
+  border-bottom:1px solid #f5f5f5;
+}
+.tx_id{
+  width: 10%;
+  text-align: center;
+  float: left;
+}
+.tx_item{
+  width: 30%;
+  text-align: center;
+  float: left;
+}

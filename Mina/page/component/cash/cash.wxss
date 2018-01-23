@@ -1,0 +1,27 @@
+/* page/component/cash/cash.wxss */
+.account{
+  padding:50rpx 0;
+  text-align: center;
+  color:#fff;
+}
+.account view{
+  color:#fff;
+}
+.big{
+  font-size: 90rpx;
+  line-height: 100rpx;
+  color:#fff;
+}
+.tx_form{
+  padding:30rpx;
+  font-size: 16px;
+  line-height: 100rpx;
+}
+.tx_input{
+  border-radius: 5px;
+  border:1px solid #f1f1f1;
+  margin-bottom: 30rpx;
+  height:100rpx;
+  padding:0 30rpx;
+
+}

@@ -1,0 +1,114 @@
+@import '../../common/common.wxss';
+
+page,.main{
+    height: 100%;
+}
+.product{
+  display: flex;
+  justify-content: space-between;
+  flex-flow: wrap;
+}
+.categroy-left{
+    float: left;
+    width: 150rpx;
+    height: 100%;
+    border-right: 1px solid #ddd;
+    box-sizing: border-box;
+}
+.categroy-left .cate-list{
+    height: 90rpx;
+    line-height: 90rpx;
+    text-align: center;
+    border-left: 3px solid #fff;
+    font-size: 24rpx;
+}
+.categroy-left .cate-list.on{
+    color: #9CD4D3;
+    border-color: #cdcdcd;
+}
+.categroy-right{
+    float: right;
+    width: 600rpx;
+    height: 100%;
+    overflow: hidden;
+    
+}
+.cate-box{
+    height: 100%;
+    padding:40rpx;
+    box-sizing: border-box;
+}
+.cate-box .cate-banner image{
+    display: block;
+    width: 100%;
+    height: 275rpx;
+}
+.cate-title{
+    position: relative;
+    height: 30rpx;
+    line-height: 30rpx;
+    padding:30rpx 0 55rpx;
+    text-align: center;
+    color: #9CD4D3;
+    font-size: 28rpx;
+}
+.cate-title::before{
+    position: absolute;
+    left: 50rpx;
+    top: 43rpx;
+    content: '';
+    width: 70rpx;
+    height: 4rpx;
+    background: #cdcdcd;
+}
+.cate-title::after{
+    position: absolute;
+    right: 50rpx;
+    top: 43rpx;
+    content: '';
+    width: 70rpx;
+    height: 4rpx;
+    background: #cdcdcd;
+}
+
+.product-list{
+    display: inline-block;
+    font-size: 24rpx;
+}
+.product-list .pt_img{
+    width: 240rpx;
+    height: 240rpx;
+    margin-bottom: 20rpx;
+}
+.product-list:nth-child(3n){
+    margin-right: 0;
+}
+.tx_goods{
+  width: 520rpx;
+}
+.goods_title{
+  width: 240rpx;
+  white-space: pre-wrap;
+  height: 60rpx;
+  overflow: hidden;
+}
+.product-list .tx_img{
+    width: 520rpx;
+    height: 256rpx;
+    margin-bottom: 20rpx;
+}
+.product-list .tx_title{
+  position: relative;
+  width: 100%;
+  height: 50rpx;
+  left: 0;
+  top: -75rpx;
+  background-color: #000;
+  color: #fff;
+  opacity: 0.5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 22rpx;
+}

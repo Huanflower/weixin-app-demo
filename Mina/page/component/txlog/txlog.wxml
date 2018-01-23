@@ -1,0 +1,23 @@
+<!--page/component/txlog/txlog.wxml-->
+<view class="tx_list lt">
+  <view class="tx_id">编号</view>
+  <view class="tx_item">提现时间</view>
+  <view class="tx_item">提现金额</view>
+  <view class="tx_item">状态</view>
+</view>
+
+<view wx:if="{{logArr}}">
+  <view wx:for="{{logArr}}" class="tx_list">
+    <view class="tx_id">No.{{item.id}}</view>
+    <view class="tx_item">{{item.date}}</view>
+    <view class="tx_item">{{item.fee}}元</view>
+    <view class="tx_item">
+      <text wx:if="{{item.status==1}}" style="color:green">提现成功</text>
+      <text wx:if="{{item.status==0}}" style="color:red">待审核</text>
+    </view>
+  </view>
+</view>
+<view wx:else class="no_result">
+  <view class='sorry_img'><image src='/image/sorry.png' style="width:100%;height:100%"></image></view>
+  <view>暂时没有记录</view>
+</view>

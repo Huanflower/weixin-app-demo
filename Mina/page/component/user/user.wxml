@@ -1,0 +1,42 @@
+<view class="main">
+    <view class="header">
+        <image src="{{thumb}}" class="thumb"></image>
+        <text class="nickname">{{nickname}}</text>
+        <!--<text class="about">关于我们</text>-->
+    </view>
+    <view class="address-box">
+        <view class="address-manage">
+            <navigator url="../userInfo/userInfo">用户信息</navigator>
+        </view>
+        <view wx:if="{{hasAddress}}" class="address-list">
+            <view>{{address.name}}</view>
+            <view>{{address.phone}}</view>
+            <view>{{address.detail}}</view>
+        </view>
+    </view>
+    <view class="orders-box">
+        <view class="orders">我的订单</view>
+        <view class="orders-list" wx:for="{{orders}}" wx:key="index">
+            <view class="orders-number">订单编号：{{item.order_id}}</view>
+            <view class="orders-detail" wx:for="{{item.goodsInfo}}" wx:for-item="goods">
+                <image src="{{server + goods.fm_img}}"></image>
+                <view class="">{{goods.title}}</view>
+                <view class="">x{{goods.num}}</view>
+                <text class="orders-status">小计：{{goods.total}}</text>
+            </view>
+            <view class="orders-footer">
+                <text>实付：￥{{item.total_fee}}</text>
+                <view wx:if="{{item.status == 1}}">
+                  <button size="mini" class="orders-btn" bindtap="payOrders" data-id="{{item.id}}">付款</button>
+                </view>
+                <view wx:else>
+                  <text class="orders-status">{{item.status_name}}</text>
+                </view>
+            </view>
+            <view class="orders-footer" wx:if="{{item.status == 3}}">
+                <text>{{item.kd_type}}</text>
+                <text class="orders-status">{{item.kd_num}}</text>
+            </view>
+        </view>
+    </view>
+</view>

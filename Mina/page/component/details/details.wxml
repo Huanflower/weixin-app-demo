@@ -1,0 +1,84 @@
+<import src="../../../wxParse/wxParse.wxml"/> 
+<scroll-view scroll-y="true" bindscroll="scroll" scroll-top="{{scrollTop}}" bindscrolltolower="getMore" style="position:absolute; top:0; left:0; right:0; bottom:0;">
+<view class="main">
+    <view class="goods-box" wx:if="{{goods.cate_type != 3}}">
+      <swiper indicator-dots="true" autoplay="true" interval="{{interval}}" duration="{{duration}}" circular="true">
+        <block wx:for="{{goods.tj_img}}" wx:key="{{index}}">
+            <swiper-item>
+                <image src="{{server + item}}" class="goods-thumb"/>
+            </swiper-item>
+        </block>
+      </swiper>
+        <navigator open-type="navigate" url="../cart/cart">
+            <view class="carts-icon {{scaleCart?'on':''}}">
+                <image src="/image/cart2.png"></image>
+                <text class="carts-icon-num" wx:if="{{hasCarts}}" style='background-color:{{color}}'>{{totalNum}}</text>
+            </view>
+        </navigator>
+        <image wx:if="{{show}}" src="/image/cart1.png" class="to-carts-icon"></image>
+        <view class="goods-title">{{goods.title}}</view>
+        <view class="goods-stock">库存{{goods.stock}}</view>
+        <view class="goods-price">￥ {{goods.now_price}}</view>
+    </view>
+    <view class="goods-tab-box">
+        <view class="goods-tab-nav {{curIndex === 0 ?'on':''}}" bindtap="bindTap" data-index="0" wx:if="{{goods.cate_type != 3}}">商品详情</view>
+        <!--<view class="goods-tab-nav {{curIndex === 1 ?'on':''}}" bindtap="bindTap" data-index="1">产品参数</view>
+        <view class="goods-tab-nav {{curIndex === 2 ?'on':''}}" bindtap="bindTap" data-index="2">售后保障</view>-->
+        <view class="goods-content">
+            <view wx:if="{{curIndex === 0}}">
+              <view class="wxParse">
+                  <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+              </view>
+            </view>
+            <!--<view wx:if="{{curIndex === 1}}">{{goods.parameter}}</view>
+            <view wx:if="{{curIndex === 2}}">{{goods.service}}</view>-->
+        </view>
+    </view>
+    <!--套系展示标题-->
+    <view class='tx_title_view' wx:if="{{goods.cate_type == 3}}">
+      <text>【{{goods.title}}】</text>
+    </view>
+</view>
+<view class="bottom_bar">
+  <view class="cs_bar" wx:if="{{goods.cate_type != 3}}">
+    <view class="cs_image">
+      <image src="../../../image/cart.png" class="bottom_bar_image" data-id="{{goods.id}}" bindtap="addToCart"></image>
+    </view>
+    <view class="bottom_bar_text">加入购物车</view>
+  </view>
+  <view class="cs_bar" bindtap="collect" data-id="{{goods.id}}">
+    <view class="cs_image">
+      <image src="{{hasCollect? '../../../image/collect_has.png' : '../../../image/collect_no.png'}}" class="bottom_bar_image"></image>
+    </view>
+    <view class="bottom_bar_text">收藏</view>
+  </view>
+  <view class="gwc_botton" style="background-color:#DEC695;color:#fff;" bindtap="toOrder" data-type="buy" wx:if="{{!tid && goods.sell_type == 2}}">
+    <text>￥{{goods.now_price}}</text>
+    <text>单独购买</text>
+  </view>
+  <view class="gwc_botton" style="background-color:{{color}};color:#fff;" bindtap="toOrder" data-type="tuan" wx:if="{{!tid && goods.sell_type == 2}}">
+    <text>￥{{goods.tuan_price}}</text>
+    <text>一键开团</text>
+  </view>
+  <view class="gwc_botton" style="background-color:{{color}};color:#fff;width:70%;" bindtap="toOrder" data-type="buy" wx:if="{{!tid && goods.sell_type == 1 && goods.cate_type != 3}}">
+    <text>￥{{goods.now_price}}</text>
+    <text>立即抢购</text>
+  </view>
+  <view class="gwc_botton" style="background-color:{{color}};color:#fff;width:85%;" wx:if="{{goods.cate_type == 3}}">
+    <navigator url="/page/component/appointment/appointment?id={{goods.id}}">
+      <text>立即预约</text>
+    </navigator>
+  </view>
+  <view class="yq_button"  style="background-color:{{color}};color:#fff;" wx:if="{{tid && goods.sell_type == 2}}">
+    <navigator url="/page/component/groupBuy/groupBuy?tid={{tid}}">
+      <text>邀请好友参团</text>
+    </navigator>
+  </view>
+</view>
+</scroll-view>
+
+<view class="widget-goTop" bindtap="goTop" wx:if="{{ floorstatus }}">
+  <view class="gotop-wrap">
+    <view class="icon icon-top"></view> <view>顶部</view>
+  </view>
+</view>

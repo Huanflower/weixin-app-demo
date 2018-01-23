@@ -1,0 +1,109 @@
+<!--pages/mine/mine.wxml-->
+<!--index.wxml-->
+
+<view>
+  <view  bindtap="bindViewTap" class="userinfo" style='background-color:{{color}}'>
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  </view>
+  
+  <view wx:if="{{status == 'wait'}}">
+    <view><image class="tips" src="/image/yuyue.png"></image></view>
+    <view><text class="info_agree">谢谢您的支持，请等待审核！</text></view>
+  </view>
+  <view wx:elif="{{status == 'pass'}}">
+    <view class="account" style='background-color:{{color}}'>
+      <view class="big">{{account}} </view>
+      <view>账户余额(元)</view>
+    </view>
+    <view class="divid"></view>
+    <view class="acc_list">
+      <view class="acc_li">
+        <image src="/image/arrow_down.png"></image>
+        <navigator url="/page/component/bonus/bonus">
+          <view class="acc_txt">分销记录</view>
+        </navigator>
+      </view>
+      <view class="acc_li">
+        <image src="/image/arrow_down.png"></image>
+        <navigator url="/page/component/cash/cash">
+          <view class="acc_txt">我要提现</view>
+        </navigator>
+      </view>
+      <view class="acc_li">
+        <image src="/image/arrow_down.png"></image>
+        <navigator url="/page/component/txlog/txlog">
+          <view class="acc_txt">提现记录</view>
+        </navigator>
+      </view>
+      <view class="acc_li">
+        <image src="/image/arrow_down.png"></image>
+        <view class="acc_txt">我的推荐人 <text style='float:right'>{{referName}} </text></view>
+      </view>
+      <view class="acc_li">
+        <image src="/image/arrow_down.png"></image>
+        <navigator url="/page/component/team/team">
+          <view class="acc_txt">我的下级</view>
+        </navigator>
+      </view>
+    </view>
+  </view>
+  <view wx:else>
+    <form class="page__bd" catchsubmit="formSubmit" catchreset="formReset">
+    <view class='agent_form'>
+      <view class='agent_tit'>欢迎加入<text style='color:red'>{{shopName}}</text> 请填写申请信息</view>
+    </view>
+    <view class="user_info">
+      <view class="info_list">
+        <view class="info_name">
+          <text>邀请人</text>
+        </view>
+        <view class="info_input">
+          <text style='font-size:16px'><text style='color:red'>{{referName}}</text> (请核对)</text>
+        </view>
+      </view>
+      <view class="info_list">
+        <view class="info_name">
+          <text>姓名：</text>
+        </view>
+        <view class="info_input">
+          <input placeholder="请输入您的姓名" name="agentName" value=""/>
+        </view>
+      </view>
+      <view class="info_list">
+        <view class="info_name">
+          <text>电话：</text>
+        </view>
+        <view class="info_input">
+          <input type="number" placeholder="请输入您的手机号码" name="agentTel" value=""/>
+        </view>
+      </view>
+      <view class="info_list">
+        <view class="info_agree">
+          <label>
+            <checkbox disabled="true" checked="true"  color="{{color}}" /> 我已经阅读并了解 <text bindtap="modalTap">《分销申请协议》                  </text>
+          </label>
+          <modal title="分销申请协议" confirm-text="我同意"  no-cancel hidden="{{modalHidden}}" bindconfirm="modalChange">
+            {{agreeMent}}
+          </modal>
+        </view>
+      </view>
+    </view>
+    <view class="submit_button"> 
+      <button form-type="submit" style='background-color:{{color}}'>申请成为分销商</button>
+    </view>
+    </form>
+    <view class="kb_view" style="height:5px;"></view>
+    <view class="meta">
+      <view class="meta_tit">分销商特权</view>
+      <view class="meta_dsp">
+        <view>销售拿佣金</view>
+        <view>成为分销商后卖出商品，您可以获得佣金。</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<import src="../../common/tabbar.wxml" />
+<template is="tabbar" data="{{tabbarList:tabbarList, tabbarHidden:tabbarHidden}}"></template>
+

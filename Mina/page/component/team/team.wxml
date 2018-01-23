@@ -1,0 +1,25 @@
+<!--page/component/team/team.wxml-->
+<!--page/component/txlog/txlog.wxml-->
+<view class="tx_list lt">
+  <view class="tx_id">id</view>
+  <view class="tx_item">姓名</view>
+  <view class="tx_item">手机号</view>
+  <view class="tx_item">状态</view>
+</view>
+
+<view wx:if="{{myTeam}}">
+  <view wx:for="{{myTeam}}" class="tx_list">
+    <view class="tx_id">{{item.uid}}</view>
+    <view class="tx_item">{{item.agentName}}</view>
+    <view class="tx_item">{{item.agentTel}}</view>
+    <view class="tx_item">
+      <text wx:if="{{item.status==1}}" style="color:green">审核通过</text>
+      <text wx:if="{{item.status==0}}" style="color:red">待审核</text>
+    </view>
+  </view>
+</view>
+<view wx:else class="no_result">
+  <view class='sorry_img'><image src='/image/sorry.png' style="width:100%;height:100%"></image></view>
+  <view>暂时没有记录</view>
+</view>
+

@@ -1,0 +1,131 @@
+<!--pages/mine/mine.wxml-->
+<!--index.wxml-->
+<view>
+  <view  bindtap="bindViewTap" class="userinfo" style="height:190px;background-color:{{color}}">
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  </view>
+  <view class="order_type_list" style="border:1px solid {{color}}">
+    <view class="order_type" bindtap="toOrderList" data-id="0">
+      <view class="order_icon">
+        <image src="/image/qbdd.png" class="order_image"></image>
+      </view>
+      <view class="order_title">全部订单</view>
+    </view>
+    <view class="order_type" bindtap="toOrderList" data-id="1">
+      <view class="order_icon">
+        <image src="/image/dfk.png" class="order_image"></image>
+      </view>
+      <view class="order_title">待付款</view>
+    </view>
+    <view class="order_type" bindtap="toOrderList" data-id="2">
+      <view class="order_icon">
+        <image src="/image/dfh.png" class="order_image"></image>
+      </view>
+      <view class="order_title">待发货</view>
+    </view>
+    <view class="order_type" bindtap="toOrderList" data-id="3">
+      <view class="order_icon">
+        <image src="/image/dsh.png" class="order_image"></image>
+      </view>
+      <view class="order_title">待收货</view>
+    </view>
+    <view class="order_type" bindtap="toOrderList" data-id="5">
+      <view class="order_icon">
+        <image src="/image/dtk.png" class="order_image"></image>
+      </view>
+      <view class="order_title">待退款</view>
+    </view>
+  </view>
+  <view class="kb_view"></view>
+  <navigator url="/page/component/userInfo/userInfo">
+    <view class="my_menu">
+      <view class="menu_name">
+        <image src="/image/wdzl.png" class='list_img'></image>
+        <view>我的资料</view>
+      </view>
+      <view class="more_view">
+        <image src="/image/more.png"></image>
+      </view>
+    </view>
+  </navigator>
+  <view class="kb_view" style="height:5px;"></view>
+  <navigator wx:if="{{agentSta}}" url="/page/component/agent/agent">
+    <view class="my_menu">
+      <view class="menu_name">
+        <image src="/image/fx.png" class='list_img'></image>
+        <view><text wx:if="{{agentSta=='pass'}}">我的分销</text><text wx:else>申请成为分销商</text></view>
+      </view>
+      <view class="more_view">
+        <image src="/image/more.png"></image>
+      </view>
+    </view>
+  </navigator>
+  <view class="kb_view" style="height:5px;"></view>
+  <navigator url="/page/component/groupBuyList/groupBuyList?id=0">
+    <view class="my_menu menu_name_border">
+      <view class="menu_name">
+        <image src="/image/wdtg.png" class='list_img'></image>
+        <view>我的团购</view>
+      </view>
+      <view class="more_view">
+        <image src="/image/more.png"></image>
+      </view>
+    </view>
+  </navigator>
+  <navigator url="/page/component/collectList/collectList">
+    <view class="my_menu menu_name_border">
+      <view class="menu_name" >
+        <image src="/image/wdsc.png" class='list_img'></image>
+        <view>我的收藏</view>
+      </view>
+      <view class="more_view">
+        <image src="/image/more.png"></image>
+      </view>
+    </view>
+  </navigator>
+  <navigator url="/page/component/appointment/appointment">
+    <view class="my_menu menu_name_border">
+      <view class="menu_name" >
+        <image src="/image/yuyue.png" class='list_img'></image>
+        <view>我的预约</view>
+      </view>
+      <view class="more_view">
+        <image src="/image/more.png"></image>
+      </view>
+    </view>
+  </navigator>
+  <navigator url="/page/component/cart/cart">
+    <view class="my_menu menu_name_border">
+      <view class="menu_name" >
+        <image src="/image/wdgwc.png" class='list_img'></image>
+        <view>购物车</view>
+      </view>
+      <view class="more_view">
+        <image src="/image/more.png"></image>
+      </view>
+    </view>
+  </navigator>
+  <view class="kb_view" style="height:10px;"></view>
+  <view class="my_menu" bindtap="address" bindtap = "showAddress">
+    <view class="menu_name">
+      <image src="/image/wddz.png" class='list_img'></image>
+      <view>收货地址管理</view>
+    </view>
+    <view class="more_view">
+        <image src="/image/more.png"></image>
+    </view>
+  </view>
+  <!--个人信息配置信息-->
+  <navigator url="/page/component/userInfo/userInfo" class="widget">
+    <view class="peizhi_info">
+        <image src="/image/peizhi.png"></image>
+    </view>
+  </navigator>
+  <loading hidden="{{loading}}">
+    加载中...
+  </loading>
+</view>
+<import src="../../common/tabbar.wxml" />
+<template is="tabbar" data="{{tabbarList:tabbarList, tabbarHidden:tabbarHidden}}"></template>
+

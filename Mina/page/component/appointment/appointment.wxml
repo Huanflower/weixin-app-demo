@@ -1,0 +1,64 @@
+<!--page/component/appointment/appointment.wxml-->
+<view class="page">  
+  <view class="box">  
+    <view class="box-flex">  
+      <view class="flex-item">  
+        <view class="item-content" bindtap="doDay" data-key='left'>  
+          <view class="glyphicon glyphicon-triangle-left" style="color:{{color}}"></view>  
+        </view>  
+      </view>  
+      <view class="flex-item item-content-current-day">  
+        <view class="item-content">{{currentDate}}</view>  
+      </view>  
+      <view class="flex-item">  
+        <view class="item-content" bindtap="doDay" data-key="right">  
+          <view class="glyphicon glyphicon-triangle-right" style="color:{{color}}"></view>  
+        </view>  
+      </view>  
+    </view>  
+    <view class="box-flex" style="padding-top:1rpx;">  
+      <view class="flex-item flex-item-padding">  
+        <view class="item-content item-title-content">一</view>  
+      </view>  
+      <view class="flex-item flex-item-padding">  
+        <view class="item-content item-title-content">二</view>  
+      </view>  
+      <view class="flex-item flex-item-padding">  
+        <view class="item-content item-title-content">三</view>  
+      </view>  
+      <view class="flex-item flex-item-padding">  
+        <view class="item-content item-title-content">四</view>  
+      </view>  
+      <view class="flex-item flex-item-padding">  
+        <view class="item-content item-title-content">五</view>  
+      </view>  
+      <view class="flex-item flex-item-padding">  
+        <view class="item-content item-title-content">六</view>  
+      </view>  
+      <view class="flex-item flex-item-padding">  
+        <view class="item-content item-title-content">日</view>  
+      </view>  
+    </view>  
+    <view class="box-flex" style="padding-bottom:1rpx;">  
+      <view class="flex-item flex-item-padding" wx:for="{{currentDayList}}" wx:for-index='key' wx:for-item="vo" wx:key="{{key}}">  
+          <view class="item-content {{currentDays== vo.day ?'bk-color-day':''}}" data-index="{{key}}" data-day="{{vo.day}}" bindtap="choseDay" wx:if="{{currentDates != vo.date}}">{{vo.day}}</view>  
+          <view class="item-content {{currentDays== vo.day ?'bk-color-day':''}} bk-today" style="background-color:{{currentDays== vo.day ?color:''}}" data-index="{{key}}" data-day="{{vo.day}}" bindtap="choseDay" wx:else>
+            <text>{{vo.day}}</text>
+            <text>今天</text>
+          </view>  
+      </view>  
+    </view>
+    <view class="box-flex ddsd_title">
+      <text style="border-bottom:1px solid {{color}}">到店时段</text>
+    </view>
+    <view class="box-flex">
+      <view class="flex-item ddsd" wx:for="{{timeList}}" wx:for-index='key' wx:for-item="vo" wx:key="{{key}}">  
+            <view class="item-content {{currentTime== key ?'bk-color-day':''}}" data-index="{{key}}" bindtap="choseTime">{{vo}}</view>
+        </view>
+    </view> 
+  </view>
+  <view class="yysj" bindtap="toAppInfo" style='background-color:{{color}}'>
+      <text>填写预留信息</text>
+  </view>
+</view>
+<view class="myToast" hidden="{{toastHidden}}">请选择预约时间</view>

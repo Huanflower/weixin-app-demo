@@ -1,0 +1,87 @@
+<view class="main">
+    <swiper indicator-dots="true" autoplay="true" interval="{{interval}}" duration="{{duration}}" circular="true">
+        <block wx:for="{{imgUrls[0]['url']}}" wx:key="{{index}}">
+            <swiper-item>
+                <image src="{{server + item}}" class="slide-image" width="100%" bindtap="adsTo" data-cateId="{{imgUrls[0]['cate_id']}}" data-goodsId="{{imgUrls[0]['goods_id']}}" />
+            </swiper-item>
+        </block>
+    </swiper>
+    <view class="selected">
+        <view class="select-title"><text>精选主题</text></view>
+        <view class="select-top">
+            <view class="select-top-small" bindtap="adsTo" data-cateId="{{imgUrls[1]['cate_id']}}" data-goodsId="{{imgUrls[1]['goods_id']}}">
+              <image src="{{server + imgUrls[1]['url']}}"></image>
+            </view>
+            <view class="select-top-small" bindtap="adsTo" data-cateId="{{imgUrls[2]['cate_id']}}" data-goodsId="{{imgUrls[2]['goods_id']}}">
+              <image src="{{server + imgUrls[2]['url']}}"></image>
+            </view>
+        </view>
+        <view class="select-bottom" bindtap="adsTo" data-cateId="{{imgUrls[3]['cate_id']}}" data-goodsId="{{imgUrls[3]['goods_id']}}">
+          <image src="{{server + imgUrls[3]['url']}}"></image>
+        </view>
+    </view>
+    <view class="hzgd" wx:for="{{showCateList}}" wx:for-index="index" wx:for-item="items">
+      <view class="title" wx:if="{{items.cate_type != 3}}">
+        <image src="../../image/tjxs.png" wx:if="{{index == 0}}"></image>
+        <image src="../../image/fire.png" wx:if="{{index == 1}}"></image>
+        <image src="../../image/new_sj.png" wx:if="{{index == 2}}"></image>
+        <image src="../../image/hstx.png" wx:if="{{itmes.cate_type == 3}}"></image>
+        <text>{{items.title}}</text>
+      </view>
+      <view class="title" wx:if="{{items.cate_type == 3}}">
+        <image src="../../image/hstx.png"></image>
+        <text>{{items.title}}</text>
+      </view>
+      <view class="gdzt">
+        <scroll-view class="scroll_view" scroll-x="true" scroll-left="0">
+          <navigator url="details/details?id={{goodsList.id}}" wx:for="{{items.goodsList}}" wx:for-index="i" wx:for-item="goodsList" class="pt_navigator {{items.cate_type == 3 ? 'tx_navigator' : ''}}">
+            <view class="scroll_item">
+              <image src="{{server + goodsList.fm_img}}" class="pt_img {{items.cate_type == 3 ? 'tx_img' : ''}}"></image>
+              <view class="scroll_item_title">{{goodsList.title}} </view>
+              <view class="scroll_item_price" wx:if="{{items.cate_type != 3}}">￥{{goodsList.now_price}}</view>
+              <view class="scroll_item_old_price" wx:if="{{items.cate_type != 3}}">￥{{goodsList.old_price}}</view>
+            </view>
+          </navigator>
+        </scroll-view>
+      </view>
+    </view>
+    <view class="newest">
+        <view class="newest-title">
+          <image src="../../image/lx.png"></image>
+          <view class="title-text">最近新品</view>
+        </view>
+          <view class="newest-box">
+            <view class="newest-list {{item.cate_type == 3 ? 'tx-list' : ''}}" wx:for="{{goodsList}}" wx:for-index="idx" wx:for-item="item">
+                <navigator url="details/details?id={{item.id}}" class="navigator">
+                    <image src="{{server + item.fm_img}}" class="fm_img {{item.cate_type == 3 ? 'tx_fm_img' : ''}}"></image>
+                    <view class="newest-text goods-title"><text>{{item.title}}</text></view>
+                    <view class="newest-text {{item.sell_type == 2 ? 'have_tuan' : ''}}" wx:if="{{item.cate_type != 3}}">
+                      <text style="color:#F03533;">￥{{item.now_price}}</text>
+                      <image src="../../image/tg.png" class="tg_img" wx:if="{{item.sell_type == 2}}"></image>
+                    </view>
+                </navigator>
+            </view>
+          </view>
+    </view>
+</view>
+<view class="guajian">
+  <view class="zxkf">
+    <contact-button 
+      type="default-light" 
+      size="20"
+      session-from="weapp"
+    >
+    </contact-button>
+  </view>
+  <navigator url="/page/component/appointment/appointment">
+    <view class="zxyy">
+      <text>预约</text>
+    </view>
+  </navigator>
+</view>
+
+<loading hidden="{{loading}}">
+    加载中...
+</loading>
+<import src="../common/tabbar.wxml" />
+<template is="tabbar" data="{{tabbarList:tabbarList, tabbarHidden:tabbarHidden}}"></template>

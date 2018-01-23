@@ -1,0 +1,84 @@
+<!--page/component/groupBuy/groupBuy.wxml-->
+<view class="tuan_top">
+  <image src="{{server + goodsInfo.fm_img}}" class="tuan_goods_img"></image>
+  <view class="tuan_goods_info">
+    <view class="tuan_goods_djs">
+      <text wx:if="{{tInfo.status == 1}}">{{clock}}</text>
+      <text wx:if="{{tInfo.status == 2}}">拼团完成</text>
+      <text wx:if="{{tInfo.status == 3}}">拼团失败</text>
+    </view>
+    <view class="tuan_goods_ssme">
+      <view class="ssme">
+        仅剩<text class="member_num" style='color:{{color}}'>{{tInfo.max_member - tInfo.has_member}}</text>个名额
+      </view>
+      <view class="tuan_price">
+        <text class="member_num now_price" style='color:{{color}}'>￥{{goodsInfo.tuan_price}}</text>
+        <text class="old_price">￥{{goodsInfo.old_price}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="white"></view>
+<view class="tuan_detail">
+  <view class="member_list">
+    <view class="tz">团长</view>
+    <view class="member_image" wx:for="{{tMember}}">
+      <image src="{{item.avatarUrl?item.avatarUrl : '../../../image/wh.png'}}"></image>
+    </view>
+  </view>
+  <view class="" wx:if="{{tInfo.status == 1}}">
+    <button class="ct_button" style='background-color:{{color}}' open-type="share" wx:if="{{haveRec}}">
+      邀请好友参团
+    </button>
+    <button class="ct_button" style='background-color:{{color}}' wx:if="{{!haveRec}}" bindtap="toOrder">
+      立即参团
+    </button>
+  </view>
+  <button class="ct_button" style='background-color:{{color}}' wx:if="{{tInfo.status == 2}}" >
+      拼团成功
+  </button>
+  <button class="ct_button" style='background-color:{{color}}' wx:if="{{tInfo.status == 3}}" >
+      拼团失败
+  </button>
+  <view class="ctxz_list">
+    <view class="ctxz_text">商品名称</view>
+    <navigator url="/page/component/details/details?id={{goodsInfo.id}}&tid={{tInfo.id}}">
+      <view class="ctxz_info" style="overflow:hidden;">
+          {{goodsInfo.title}}
+      </view>
+     </navigator>
+  </view>
+  <view class="ctxz_list">
+    <view class="ctxz_text">参团时间</view>
+    <view class="ctxz_info">
+      {{tInfo.ctsj}}
+    </view>
+  </view>
+  <view class="ctxz_list">
+    <view class="ctxz_text">参团须知</view>
+    <view class="ctxz_info">
+      ·开团 ·好友参团 ·人满发货 ·人不满退款
+    </view>
+  </view>
+</view>
+<view class="white"></view>
+<view class="ctsm_list">
+  <view class="ctsm">
+    活动规则
+  </view>
+  <view class="ctsm">
+    活动时间：{{tInfo.startTime}}-{{tInfo.endTime}}
+  </view>
+  <view class="ctsm">
+    1.开团或参加别人的团
+  </view>
+  <view class="ctsm">
+    2.在规定时间内，邀请好友参团
+  </view>
+  <view class="ctsm">
+    3.达到拼团人数，分别给团长和团员发货
+  </view>
+  <view class="ctsm">
+    4.未达到拼团人数，货款将自动原路退还
+  </view>
+</view>
